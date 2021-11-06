@@ -1,30 +1,38 @@
-package br.com.robson.gerenciador.servlet;
+package br.com.robson.gerenciador.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-
 public class Banco {
 
 	private static List<Empresa> list = new ArrayList<>();
-	private static Integer chaveSequancial = 1;
+	private static List<Usuario> listUsuarios = new ArrayList<>();
+	private static Integer chaveSequencial = 1;
+	//private static Integer chaveSequencialusuarios = 1;
 
 	static {
 		Empresa empresa = new Empresa();
-		empresa.setId(chaveSequancial++);
+		empresa.setId(chaveSequencial++);
 		empresa.setNome("Dataprom");
 		Empresa empresa2 = new Empresa();
-		empresa2.setId(chaveSequancial++);
+		empresa2.setId(chaveSequencial++);
 		empresa2.setNome("Alura");
 		list.add(empresa);
 		list.add(empresa2);
+		
+		Usuario u = new Usuario();
+		u.setLogin("Robson");
+		u.setSenha("123");		
+		Usuario u2 = new Usuario();
+		u2.setLogin("Lolo");
+		u2.setSenha("456");
+		listUsuarios.add(u);
+		listUsuarios.add(u2);
 	}
 
 	public void adicionar(Empresa empresa) {
-		empresa.setId(chaveSequancial++);
+		empresa.setId(chaveSequencial++);
 		Banco.list.add(empresa);
 	}
 
@@ -55,5 +63,17 @@ public class Banco {
 		}
 		return null;
 
+	}
+
+	public Usuario existiUsuario(String login, String senha) {
+		for (Usuario usuario : listUsuarios) {
+			if (usuario.ehquals(login,senha)) {
+				return usuario;
+			}
+
+		}
+		return null;
+
+		
 	}
 }

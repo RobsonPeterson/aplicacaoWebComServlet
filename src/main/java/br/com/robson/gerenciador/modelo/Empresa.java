@@ -1,4 +1,4 @@
-package br.com.robson.gerenciador.servlet;
+package br.com.robson.gerenciador.modelo;
 
 import java.util.Date;
 

@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/listaEmpresas")
+import br.com.robson.gerenciador.modelo.Banco;
+import br.com.robson.gerenciador.modelo.Empresa;
+
+//@WebServlet("/listaEmpresas")
 public class ListaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

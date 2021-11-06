@@ -1,4 +1,4 @@
-package br.com.robson.gerenciador.servlet;
+package br.com.robson.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,22 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.robson.gerenciador.modelo.Banco;
 import br.com.robson.gerenciador.modelo.Empresa;
 
-//@WebServlet("/alteraEmpresa")
-public class AlteraEmpresaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class NovaEmpresa implements Acao {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String parameId = request.getParameter("id");
-		Integer id = Integer.valueOf(parameId);
-		
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
 		
@@ -33,13 +26,16 @@ public class AlteraEmpresaServlet extends HttpServlet {
 			throw new ServletException(e);
 		}
 		
-		Banco banco = new Banco();
-		Empresa empresa = banco.buscaEmpresaPeloId(id);			
+		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);		
 		empresa.setDataAbertura(dataAbertura);
 		
-		request.setAttribute("empresa", empresa.getNome());	
-		response.sendRedirect("listaEmpresas");		
+		Banco banco = new Banco();		
+		banco.adicionar(empresa);	
+		
+		request.setAttribute("empresa", empresa.getNome());
+		
+		return "redirect:entrada?acao=ListaEmpresas";
+		
 	}
-
 }
