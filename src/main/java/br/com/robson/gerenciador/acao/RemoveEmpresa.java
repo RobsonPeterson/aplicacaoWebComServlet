@@ -10,7 +10,6 @@ import br.com.robson.gerenciador.modelo.Banco;
 public class RemoveEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 
 		String parameId = request.getParameter("id");
 		Integer id = Integer.valueOf(parameId);
@@ -20,7 +19,7 @@ public class RemoveEmpresa implements Acao {
 		banco.removeEmpresa(id);
 
 		return "redirect:entrada?acao=ListaEmpresas";
-		
+
 	}
-	
+
 }

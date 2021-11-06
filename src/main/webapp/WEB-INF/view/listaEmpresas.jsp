@@ -9,9 +9,15 @@
 <html>
 </head>
 <body>
-    Lista de empresas: <br />
-    <ul>
-    <li><a href="/gerenciador/entrada?acao=FormNovaEmpresa">Nova Empresa</a></li>
+	
+	Usuario Logado: ${usuarioLogado.login}	
+	<br>
+	<c:import url="logout-parcial.jsp"></c:import>	
+	<a href="/gerenciador/entrada?acao=FormNovaEmpresa">Nova Empresa</a>
+	<br>
+    <br>
+    Lista de empresas:
+    <ul>    
         <c:forEach items="${empresas}" var="empresa">
 
             <li>

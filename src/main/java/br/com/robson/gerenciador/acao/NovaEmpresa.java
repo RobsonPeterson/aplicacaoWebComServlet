@@ -13,11 +13,12 @@ import br.com.robson.gerenciador.modelo.Banco;
 import br.com.robson.gerenciador.modelo.Empresa;
 
 public class NovaEmpresa implements Acao {
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
-		
+
 		Date dataAbertura = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -25,17 +26,17 @@ public class NovaEmpresa implements Acao {
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
-		
+
 		Empresa empresa = new Empresa();
-		empresa.setNome(nomeEmpresa);		
+		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
-		
-		Banco banco = new Banco();		
-		banco.adicionar(empresa);	
-		
+
+		Banco banco = new Banco();
+		banco.adicionar(empresa);
+
 		request.setAttribute("empresa", empresa.getNome());
-		
+
 		return "redirect:entrada?acao=ListaEmpresas";
-		
+
 	}
 }
