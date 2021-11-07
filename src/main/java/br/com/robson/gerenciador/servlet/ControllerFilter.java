@@ -2,20 +2,28 @@ package br.com.robson.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.robson.gerenciador.acao.Acao;
 
-//@WebServlet("/entrada")
-public class EntradaServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String paramAcao = request.getParameter("acao"); 
+//@WebFilter("/Entrada")
+public class ControllerFilter implements Filter {
+    
+	public void doFilter(ServletRequest servletRequest, ServletResponse servlerResponse, FilterChain chain) throws IOException, ServletException {
+		System.out.println("Entrada");
+				
+		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servlerResponse;
+		
+		String paramAcao = request.getParameter("acao"); 
     	
         String nomeDaClasse = "br.com.robson.gerenciador.acao." + paramAcao;        
         String nome;
@@ -37,5 +45,8 @@ public class EntradaServlet extends HttpServlet {
             response.sendRedirect(tipoEEndereco[1]);
 
         }
-    } 
-} 
+        
+
+	}
+
+}
